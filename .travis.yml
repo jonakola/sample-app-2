@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run -e CI=true jkola/sample-app-2 npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: "sample-app-2"
+  env: "SampleApp2-env"
+  bucket_name: "elasticbeanstalk-us-east-2-243172748836"
+  bucket_path: "sample-app-2"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
