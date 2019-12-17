@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t jkola/sample-app-2 -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true jkola/sample-app-2 npm run test
