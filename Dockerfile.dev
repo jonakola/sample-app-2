@@ -1,0 +1,12 @@
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+
+RUN npm install
+
+# This doesn't strictly have to be here because of the volume mounts, but should still leave it here for prod version
+COPY . .
+
+CMD ["npm", "run", "start"]
